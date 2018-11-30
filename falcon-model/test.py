@@ -116,5 +116,5 @@ class TestMaxesModel(unittest.TestCase):
         
 
 
-if True: #__name__ == "__main__":
+if True:
     unittest.main()

@@ -14,9 +14,6 @@ from requests.exceptions import HTTPError
 from server.db_functions import get_user_token, StoreTransactions, select_latest
 import time
 
-print(select_latest('08d350d2-9bf9-4d9f-8243-cc85beb283e8'))
-
-
 class Authorize(unittest.TestCase):
     def setUp(self):
         self.user = {
@@ -71,12 +68,6 @@ class GetOrders(unittest.TestCase):
 
         self.assertEqual(task.state, 'SUCCESS')
 
-    # def test_success_state_no_new_data(self):
-    #     task_no_data = get_orders.apply_async(args=[self.user, select_latest('346ebef1-74e5-4ded-8881-fb73e32b4567') ]) 
-    #     task_no_data.get()
-
-    #     self.assertEqual(task_no_data.state, 'SUCCESS')
-
     def test_failure_state(self):
         bad_task = get_orders.apply_async(args=[self.wrong_user])
         try:
@@ -97,22 +88,6 @@ class GetUserToken(unittest.TestCase):
     def test_failure_state(self):
         result = get_user_token('346ebef1-74e5-4ded-8881-fb73e32b4567')
         self.assertEqual(result, None)
-
-# class StoreTransactionsClass(unittest.TestCase):
-#     def setUp(self):
-#         self.user_id = '346ebef1-74e5-4ded-8881-fb73e32b4567'
-#         print(select_latest('346ebef1-74e5-4ded-8881-fb73e32b4567'))
-#         self.task = get_orders.apply_async(args=[get_user_token(self.user_id), select_latest('346ebef1-74e5-4ded-8881-fb73e32b4567')])
-#         self.results = self.task.get()
-        
-#         t0 = time.time()
-#         StoreTransactions(self.user_id, self.results).store()
-#         t1 = time.time() - t0
-#         print('{rows} rows were stored in {sec} seconds'.format(rows=len(self.results), sec=t1))
-    
-#     def test_success_state(self):
-#         self.assertTrue(True)
-
 
 if __name__ == '__main__':
     unittest.main()

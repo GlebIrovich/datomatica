@@ -3,9 +3,6 @@ from celery import Celery
 
 from .settings import settings
 
-print(settings)
-
-
 CELERY_BROKER = settings['redis']['CELERY_BROKER']
 CELERY_BACKEND = settings['redis']['CELERY_BACKEND']
 

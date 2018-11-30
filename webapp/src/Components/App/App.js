@@ -12,69 +12,38 @@ import Dashboard from '../Dashboard/Dashboard';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import LoginForm from '../LoginForm/LoginForm';
 
-class App extends React.Component {
-  render() {
-    const {
-      overlay: { loginForm, signUpForm },
-      user,
-    } = this.props;
+const App = ({ user, overlay: { loginForm, signUpForm } }) => (
+  <React.Fragment>
+    <div className="App">
+      <NavBar />
 
-    return (
-      <React.Fragment>
-        <div className="App">
-          <NavBar />
+      {signUpForm && <SignUpForm />}
+      {loginForm && <LoginForm />}
+      <Container fluid className="pl-0 pr-0">
+        <Switch>
+          <Route exact path="/" component={MainPage} />
+          <Route
+            path="/dashboard"
+            component={() => {
+              if (user.isAuthorized) {
+                return <Dashboard />;
+              }
 
-          {signUpForm && <SignUpForm />}
-          {loginForm && <LoginForm />}
-          <Container fluid className="pl-0 pr-0">
-            <Switch>
-              <Route exact path="/" component={MainPage} />
+              return <Redirect to="/" />;
+            }}
+          />
+        </Switch>
+      </Container>
+    </div>
 
-              {/* <Route
-              path="/dashboard/:section/:tab"
-              render={() => {
-                if (user.isAuthorized) {
-                  return <Dashboard user={user} {...props} />;
-                }
-                return <Redirect to="/" />;
-              }}
-            />
-            <Route
-              path="/dashboard/:section"
-              render={(props) => {
-                console.log('I am here');
-
-                if (user.isAuthorized) {
-                  return <Dashboard user={user} {...props} />;
-                }
-                return <Redirect to="/" />;
-              }}
-            /> */}
-
-              <Route
-                path="/dashboard"
-                component={() => {
-                  if (user.isAuthorized) {
-                    return <Dashboard />;
-                  }
-                  return <Redirect to="/" />;
-                }}
-              />
-            </Switch>
-          </Container>
-        </div>
-
-        <Footer />
-      </React.Fragment>
-    );
-  }
-}
+    <Footer />
+  </React.Fragment>
+);
 
 App.propTypes = {
   user: PropTypes.shape({
     isAuthorized: PropTypes.bool.isRequired,
   }).isRequired,
-  dispatch: PropTypes.func.isRequired,
   overlay: PropTypes.shape({
     loginForm: PropTypes.bool.isRequired,
     signUpForm: PropTypes.bool.isRequired,

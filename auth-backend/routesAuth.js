@@ -116,7 +116,6 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/auto-login', verifyToken, (req, res) => {
-  // const id = jwt.verify(req.token, JWT_SECRET || 'secret');
   console.log('POST: /auto-login');
   jwt.verify(req.token, JWT_SECRET || 'secret', async (err, authData) => {
     if (err) {
@@ -147,7 +146,6 @@ router.post('/tokens', async (req, res) => {
   } = req.body;
 
   try {
-    // create record and add url
     if (url) {
       const user = await knex('user_tokens')
         .select('*')
@@ -162,7 +160,6 @@ router.post('/tokens', async (req, res) => {
         res.status(201).send();
       }
     } else if (consumer_key && consumer_secret) {
-      // add keys
       await knex('user_tokens')
         .where('user_id', user_id)
         .update({

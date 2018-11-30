@@ -45,10 +45,6 @@ def get_orders(self, user):
     """
     status = UpdateStatus(user['user_id'])
     try:
-        # Docker specific check
-        if settings['docker']:
-            user['url'] = user['url'].replace('localhost', 'docker.for.mac.localhost')
-
         status.update('FETCHING')
         storage = StoreTransactions(user)
         wcapi = authorize(user)

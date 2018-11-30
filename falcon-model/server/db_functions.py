@@ -41,48 +41,5 @@ def delete_data(user_id, model):
             session.commit()
 
         return result
-    # except Exception: 
-    #     session.rollback()
-    #     return None
     finally:
         session.close()
-
-
-    
-
-# class UpdateStatus(object):
-#     def __init__(self, user_id):
-#         self.table = UserOperationStatus
-#         self.user_id = user_id
-#         self.session = Session()
-
-#     def update(self, status):
-#         try:
-#             self.session.query(self.table).filter(self.table.user_id == self.user_id).update({'status': status, 'updated_at': datetime.now()})
-#             self.session.commit()
-#         except NoResultFound:
-#             print('status update failed')
-#             self.session.rollback()
-#         finally:
-#             self.session.close()
-        
-        
-
-# class StoreResults(object):
-#     def __init__(self, user):
-#         self.user_id = user['user_id']
-
-#     def _change_total_to_float(self, transaction):
-#         transaction['total'] = float(transaction['total'])
-#         transaction['user_id'] = self.user_id
-#         return transaction
-
-#     def store(self, transactions):
-#         transactions = list(map(self._change_total_to_float, transactions))
-#         if len(transactions) > 0: 
-#             engine.execute(
-#                 Transactions.__table__.insert(),
-#                 transactions
-#             )
-#         else:
-#             print('data is synced')

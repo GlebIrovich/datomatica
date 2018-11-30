@@ -3,11 +3,6 @@ module.exports = {
   development: {
     client: 'pg',
     connection: `${process.env.DATABASE_URL}`,
-    // connection: {
-    //   database: 'gleb',
-    //   user: 'gleb',
-    //   password: '',
-    // },
     migrations: {
       directory: `${__dirname}/knex/migrations`,
     },

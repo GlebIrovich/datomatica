@@ -9,8 +9,6 @@ export const setData = (model, data) => ({
 });
 
 const fetchData = async (model, { user: { id, token } }) => {
-  // (model_name, user object)
-
   try {
     const url = `${configs.authUrl}models/${model}`;
     const response = await fetch(url, {

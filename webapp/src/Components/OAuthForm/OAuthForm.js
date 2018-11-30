@@ -75,11 +75,6 @@ class OAuthForm extends React.Component {
     });
     if (r.status === 200 || r.status === 201) {
       console.log('redirecting...');
-      console.log(
-        `${url}${endpoint}?app_name=${params.app_name}&scope=${params.scope}&user_id=${
-          params.user_id
-        }&return_url=${params.return_url}&callback_url=${params.callback_url}`,
-      );
 
       window.location = `${url}${endpoint}?app_name=${params.app_name}&scope=${
         params.scope

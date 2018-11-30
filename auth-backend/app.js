@@ -18,12 +18,10 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-// require('./routes.js')(app);
 app.get('/', (req, res) => {
   res.status(200).send();
 });
 
-// use router
 app.use(authRouter);
 app.use('/models', routerMaxes);
 app.use('/sync', syncRouter);

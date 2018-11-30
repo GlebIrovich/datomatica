@@ -35,8 +35,7 @@ const autoLogin = async () => {
       const {
         id, username, name, lastName, email, storeUrl,
       } = responseJson;
-      console.log('Store url', storeUrl);
-      
+
       return {
         isAuthorized: true,
         id,
