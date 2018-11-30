@@ -1,4 +1,4 @@
-# Deployment of the Datomatica web service the Heroku cloud hosting
+# Deployment of the Datomatica web service to Heroku
 
 ## Set up
 
