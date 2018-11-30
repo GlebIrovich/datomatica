@@ -1,0 +1,12 @@
+#LoginForm .form-group.row {
+  justify-content: center;
+  margin-right: 0;
+  margin-left: 0;
+}
+#LoginForm {
+  z-index: 120;
+}
+
+#LoginForm .close {
+  margin-right: -10px;
+}

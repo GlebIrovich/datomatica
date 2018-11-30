@@ -1,0 +1,72 @@
+#main-banner {
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  padding-top: 0px;
+  height: 600px;
+}
+#main-banner .container {
+  padding-top: 30px;
+}
+#banner-tomato {
+  max-height: 60%;
+}
+#red-part {
+  position: absolute;
+  width: 100%;
+  background: var(--tomato-red);
+  margin: 0;
+  height: 600px;
+  z-index: -1;
+}
+
+#main-banner .h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  letter-spacing: 0.21em;
+}
+
+#main-banner .h2 {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  letter-spacing: 0.1em;
+}
+
+@media (min-width: 767.98px) {
+  #main-banner .h1 {
+    font-size: 6rem;
+  }
+}
+
+@media (min-width: 440px) {
+  #main-banner {
+    margin-bottom: 200px;
+  }
+}
+
+@media (min-width: 991.98px) {
+  #main-banner {
+    margin-bottom: 400px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #main-banner .h2 {
+    font-size: 1rem;
+  }
+  #red-part {
+    height: 400px;
+  }
+  #main-banner {
+    height: 450px;
+  }
+}
+
+
+#main-banner .container {
+  position: relative;
+}

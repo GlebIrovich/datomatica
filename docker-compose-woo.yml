@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  webserver:
+   container_name: woo_commerce
+   image: kennyl/docker-woocommerce
+   environment:
+    WORDPRESS_DB_PASSWORD: example
+   links:
+    - dbserver:mysql
+   ports:
+    - 80:80
+
+  dbserver:
+    container_name: woo_mariadb
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - 3307:3306

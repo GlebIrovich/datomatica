@@ -1,0 +1,17 @@
+#workspace-column {
+  padding-left: 95px;
+}
+
+@media (max-width: 575.98px) {
+  #workspace-column {
+    padding-left: 65px;
+  }
+}
+#workspace .green-icon {
+  color: var(--main-green);
+  font-size: 72px;
+}
+
+#workspace {
+  color: var(--dark-grey);
+}

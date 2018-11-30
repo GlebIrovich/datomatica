@@ -1,0 +1,9 @@
+env
+__pycache__
+.DS_Store
+DEVLOGS.txt
+*/utils
+start
+.vscode
+benchmark.yml
+docker-compose.yml

@@ -1,0 +1,30 @@
+#tabbar {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  background: var(--dark-green);
+  padding-left: 120px;
+}
+
+#tabbar a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+#tabbar a:hover {
+  color: white;
+}
+
+#tabbar p {
+  margin: auto 10px;
+}
+
+#tabbar a.active {
+  color: white;
+}
+
+@media (max-width: 767.98px) {
+  #tabbar {
+    padding-left: 65px;
+  }
+}

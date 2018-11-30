@@ -1,0 +1,2 @@
+web: gunicorn -b 0.0.0.0:$PORT server.app:falcon_app --log-level=DEBUG
+celeryd: celery -A server.celery_app worker --loglevel=info -E

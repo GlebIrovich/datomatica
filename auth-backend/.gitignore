@@ -1,0 +1,6 @@
+.eslintrc.json
+/node_modules
+/test
+/.vscode
+start
+docker-compose.yml

@@ -1,0 +1,89 @@
+version: "2"
+
+services:
+  auth-backend:
+    restart: always
+    image: cookiehunter/datomatica-auth-backend
+    container_name: auth-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./:/usr/src/auth-backend"
+    command: node app.js
+
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://admin:datomatica2018@db:5432/datomatica
+      - NODE_ENV=production
+      - FETCHER_URL=http://falcon-fetcher:8001/
+    
+    depends_on:
+      - "db"
+
+  falcon-fetcher:
+    restart: always
+    image: cookiehunter/datomatica-falcon-fetcher
+    container_name: falcon-fetcher
+    volumes:
+      - './:/usr/src/falcon-fetcher'
+    command: gunicorn -b 0.0.0.0:8001 server.app:falcon_app
+    environment:
+      - DOCKER_ENV=True
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+      - DATABASE_URL=postgresql+psycopg2://admin:datomatica2018@db:5432/datomatica
+      - MODEL_URL=http://falcon-model:8000/
+    
+    depends_on:
+      - auth-backend
+      - redis
+
+  celery:
+    restart: always
+    image: cookiehunter/datomatica-falcon-fetcher
+    volumes:
+      - './:/usr/src/falcon-fetcher'
+      - './logs:/usr/src/falcon-fetcher/logs'
+    command: celery -A server.celery_app worker --autoscale=16,3 --loglevel=debug
+    environment:
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+      - DATABASE_URL=postgresql+psycopg2://admin:datomatica2018@db:5432/datomatica
+    depends_on:
+      - falcon-fetcher
+      - redis
+
+  falcon-model:
+    restart: always 
+    image: cookiehunter/datomatica-falcon-model
+    container_name: falcon-model
+    ports:
+      - '8000:8000'
+    volumes:
+      - './:/usr/src/falcon-model'
+    command: gunicorn -b 0.0.0.0:8000 server.app:falcon_app --access-logfile ./server/logs/access.log
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://admin:datomatica2018@db:5432/datomatica
+    depends_on:
+      - auth-backend
+
+  redis:
+    image: redis:5.0
+
+
+  db:
+    image: postgres:9.5
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: datomatica2018
+      POSTGRES_USER: admin
+      POSTGRES_DB: datomatica
+
+  webapp:
+    image: cookiehunter/datomatica-webapp
+    
+    container_name: webapp
+    restart: always
+    ports:
+      - '80:80'

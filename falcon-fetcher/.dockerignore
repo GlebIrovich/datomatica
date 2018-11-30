@@ -1,0 +1,9 @@
+.git
+node_modules
+npm-debug
+start
+.vscode
+docker-compose.yml
+__pycache__/
+dump.rdb
+start

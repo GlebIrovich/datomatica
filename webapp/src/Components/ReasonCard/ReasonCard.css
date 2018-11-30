@@ -1,0 +1,26 @@
+.green-back {
+  background: var(--dark-green);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 9px;
+  margin-bottom: 20px;
+  max-width: 340px;
+  min-width: 30%;
+}
+.white-back {
+  background: #F6F6F6;
+  border-radius: 5px;
+  max-height: 460px;
+  height: 100%;
+  padding: 30px 9px 0 9px;
+}
+.card-icon {
+  font-size: 64px;
+  text-align: center;
+  margin: 50px auto;
+  color: var(--tomato-red);
+}
+.white-back h4 {
+  font-weight: bold;
+  font-size: 2rem;
+}

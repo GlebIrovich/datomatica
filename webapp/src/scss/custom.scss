@@ -1,0 +1,21 @@
+$main-green: #57cd68;
+$dark-green: #4aba5a;
+$light-green: #abdbb2;
+$tomato-red: #dc4949;
+$mid-grey: #737373;
+$dark-grey: #444444;
+
+$font-family-sans-serif: -apple-system, "Rubik", sans-serif;
+
+$body-bg: #eeeeee;
+
+$theme-colors: (
+  "main-green": $main-green,
+  "dark-green": $dark-green,
+  "light-green": $light-green,
+  "tomato-red": $tomato-red,
+  "mid-grey": $mid-grey,
+  "dark-grey": $dark-grey
+);
+
+@import "node_modules/bootstrap/scss/bootstrap.scss";

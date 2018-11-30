@@ -1,0 +1,12 @@
+#SignUpForm .form-group.row {
+  justify-content: center;
+  margin-right: 0;
+  margin-left: 0;
+}
+#SignUpForm {
+  z-index: 120;
+}
+
+#SignUpForm .close {
+  margin-right: -10px;
+}
