@@ -52,7 +52,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-react": "^7.10.0",
     "flow-bin": "^0.42.0",
-    "node-sass": "^4.9.4",
+    "node-sass": "^7.0.0",
     "prettier-eslint": "^8.8.2"
   }
 }
